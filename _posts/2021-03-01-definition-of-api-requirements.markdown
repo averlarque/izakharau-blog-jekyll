@@ -1,18 +1,18 @@
 ---
 layout: post
 title: "Definition of API requirements"
-date: 2021-03-24 17:48:51 +0300
+date: 2021-03-30 01:00:00 +0300
 author: Ilya Zakharau
 category: System Analysis
 ---
 <img src="/assets/images/api.jpg" width="90%" alt=API style="vertical-align:middle;margin:1% 1%"><br>
-At some point in my career, I faced a need to specify requirements for API. Those were not typical solution requirements I worked on before. I learned about the API layer which is very common among large enterprise systems. It is hiding a set of microservices or a legacy system from the outer world. Like any other system, it is also impacted by specific stakeholders' needs. And those needs have to be translated into requirements.
+At some point in my career, I faced a need to specify requirements for API. Those were not typical solution requirements I worked on before. I learned about the API layer which is very common among the enterprise systems. It can hide a set of microservices or a legacy system from the outer world. Like any other system, it is also impacted by stakeholders' needs. And those needs have to be translated into requirements.
 
-In this post, we are going to decompose the definition of API requirements and see what lies within. I will share things I have discovered and will pay your attention to what should be taken into consideration. It is a kind of introduction to this topic as I have some deeper areas to explore and discuss with you a bit later.
+We are going to decompose the definition of API requirements and see what lies within. I will pay your attention to what should be taken into consideration for the API layer. It is an introduction to this topic as there are other sides of it to explore further.
 
 We are not going to talk about implementation types of API such as REST, RPC, GraphQL, etc. Ideally, requirements should not be tied to the technical implementation and that rule works here as well.
 
-I have been working more with REST and REST-like APIs. Like most of you, I believe. However, I think my experience can be applied to other types as well. Considering some specifics, of course. But those are not covered in this post.
+I have been working more with REST and REST-like APIs. Like most of you, I believe. However, I think my experience can be applied to other types as well. Considering some specifics, of course. But those are not covered here.
 
 ## Why You Don't Need API Requirements
 
@@ -20,17 +20,17 @@ Before we start you need to ask yourself:
 
 **Do I need to write and maintain requirements for API?**
 
-As a System or Business analyst, you don't need to proceed with those kinds of requirements if the API is used only within your service. In that case, it is a part of the provided functionality.
+As a System or Business analyst, you don't need to proceed with them if the API is used only within your service. In that case, it is a part of the provided functionality.
 
-You can define a user story and describe acceptance criteria with a bunch of functional, quality (non-functional) requirements, and mockups. That is all about expected outcomes to be reflected on a UI and/or in data. API is something in-between that you don't need to care about. It is a part of technical design managed by the engineering team with the main purpose to address the requirements.
+You can define a user story describing acceptance criteria with a bunch of functional, quality (non-functional) requirements, and attach UI wireframes. That is all about expected outcomes to be reflected on a UI and/or in data. API is something in-between that you don't need to care about. It is a part of technical design managed by the engineering team with the main purpose to address the requirements.
 
-But if your API is publicly exposed you need to also consider the interests of other parties. Those parties can be split into two big categories:
+But if your API is publicly exposed you need to consider interests of other parties. Those parties can be split into two big categories:
 * Other teams within your organization.
 * Customers and partners outside your organization.
 
-Despite obvious differences between them, they both need your service to reach their own business goals. Each party has its context under which your service is used and the integration approach. So you need to consider them as stakeholders and address their concerns to provide great customer service.
+Despite obvious differences between them, they both need your service to reach their own business goals. Each party has its context under which your service is used and a particular integration approach. Thus you need to consider them as stakeholders and address their concerns to provide great customer experience.
 
-Here it is important to divide the functional requirements from API. API requirements are not about introducing new or improving current functionality. That is about providing the right way to use that functionality. So we identify the **back-end** as a functional piece and **API** as a gateway to access that functionality provided by the aforesaid.
+It is important to separate the functional requirements from API ones. API requirements are not about introducing new or improving current functionality. That is about providing the right way to use that functionality. So we identify the **back-end** as a functional piece and **API** as a gateway to access that functionality provided by the aforesaid.
 
 ## Terms & Definitions
 One more step before we go forward. Let us clarify some concepts and align on the terms used below.
@@ -38,7 +38,7 @@ One more step before we go forward. Let us clarify some concepts and align on th
 **API**
 is translated as "Application Programmable Interface" but that does not give you a key without a Computer Science degree. For my "Bachelor of Arts" fellows, the main word here is an "Interface". Generally, your mouth and tongue are an interface for speech communication. Your fingers are an interface to type text on your keyboard for written communication. The same is applied to the software in which classes and instances communicate with each other in some strictly formalized way.
 
-API is a very broad term. Here we talk about the gateway through which your service communicates with the outer world.
+API is a very broad term. Here we talk about the gateway through which your service communicates with the outside world.
 
 **API endpoint**
 is a single instance of API with a unique address (URL). Sending a required input to that URL triggers some command within your system and returns an output about a successful result or failure.
@@ -64,13 +64,13 @@ For example, our API endpoint should cancel a purchase in a store. A "Purchase" 
 a) make sure how we identify a right Purchase to cancel;
 b) how we proceed with the cancellation.
 
-Cancellation can mean an actual deletion (bad idea) or an update (good idea) of a Purchase data object. Changing a state of an object might trigger a chain of information updates elsewhere in the system. This is business logic and you should be aware of it. Either it is triggered automatically or you need to make additional API calls to complete that action.
+Cancellation can mean an actual deletion (bad idea) or an update (good idea) of a Purchase data object. Changing a state of an object might trigger a chain of information updates elsewhere in the system. You should be aware about the business logic. Either it is triggered automatically or you need to make additional API calls to complete that action.
 
-The second question is more complex. An API call is an invisible participant of the interaction between a user and the system (Use Case). One call can participate in several use cases with each having its context. You might cover each context with a separate API endpoint or craft the one to rule them all. That is a question of implementation. The main thing here is that you need to know those contexts.
+The second question is more complex. An API call is a non-visible participant of the interaction between a user and the system (i.e. Use Case). One call can participate in several use cases with each having its context. You might cover each context with a separate API endpoint or craft the one to rule them all. That is a question of implementation. The main thing here is that you need to understand those contexts.
 
 Again, it is easier to own the context when it is all about systems within your organization. But when API goes outside and customer success is relying on that, it is difficult to consider all possible contexts which may appear.
 
-The important thing here is that you lack control over how APIs are used. You can define the rules, provide some documentation, and hope that will work. Just be prepared that problems occur where no one expects them to be.
+You lack control over how APIs are used. You can define the rules, provide some documentation, and hope that will work. Just be prepared that problems occur where no one expects them to be.
 
 ### Prerequisites
 Now we know why we build our API endpoint and what it does. Next step to define what conditions need to be satisfied to make that call. In most cases we talk here about authentication and authorization:
@@ -122,7 +122,7 @@ Making a chain of calls to one or several back-end services with a few Entities 
 
 You need to define a sequence of steps on how that chain will work. It is important to consider accessibility, especially if third-parties services are involved. And what kind of request is passed for each call and how each response should be processed.
 
-Don't forget about non-functional stuff: maintaining overall performance and sustainability. More steps we have in a sequence - the higher probability of a failure. You need to consider different "bad" scenarios: long response time, bad data, downtime, etc. Even if such "edge" cases seem to be unreal you should consider them. You might not have covered all of them due to time and financial restrictions.
+Don't forget about non-functional stuff: maintaining overall performance and sustainability. More steps we have in a sequence - the higher probability of a failure. You need to consider different "bad" scenarios: long response time, bad data, downtime, etc. Even if such "edge" cases seem to be unreal you should consider them. Even you can't cover them all due to time and financial restrictions.
 
 Whether you call other services within your organization or a third-party, now you are in the client’s shoes. You agree with the contract hoping both parties are going to follow their commitment. If you can somehow impact other services inside your organization by forcing them to follow or change the contract, for third-parties and vendors that can be problematic. Only if you have the leverage to make them but that is not always the case in real life. Anyway, all that should be considered when you are defining a composite API call.
 
