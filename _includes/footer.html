@@ -5,14 +5,15 @@
 
     <div class="footer-col-wrapper">
       <div class="footer-col">
+        <p>{{ site.description | escape }}</p>
+         <!--
         <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
         <div class="LI-profile-badge"  data-version="v1" data-size="small" data-locale="ru_RU" data-type="horizontal" data-theme="dark" data-vanity="ilya-zakharau" style="width: 100%;">
           <a class="LI-simple-link" href='https://by.linkedin.com/in/ilya-zakharau?trk=profile-badge'>Ilya Zakharau</a>
           </div>
+          -->
       </div>
-      
       <div class="footer-col">
-        <p>{{ site.description | escape }}</p>
         <p class="feed-subscribe">
           <a href="{{ 'feed.xml' | relative_url }}">
             <svg class="svg-icon orange">
