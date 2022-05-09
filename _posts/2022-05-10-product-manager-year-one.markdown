@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Product Manager: Year One
+title: "Product Manager: Year One"
 date: 2022-05-10 01:00:00 +0300
 author: Ilya Zakharau
 category: Product Management
